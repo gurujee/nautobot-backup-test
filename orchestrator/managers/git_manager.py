@@ -84,8 +84,12 @@ def git_commit_backup_changes(
 
     origin = repo.remote(name="origin")
 
-    origin.push(
+    push_results = origin.push(
         refspec=f"{GIT_BRANCH}:{GIT_BRANCH}"
     )
+
+    for result in push_results:
+
+        print(result.summary)
 
     print("Git push completed.")
